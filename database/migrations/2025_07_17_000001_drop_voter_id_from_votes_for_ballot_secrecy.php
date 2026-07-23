@@ -28,32 +28,47 @@ return new class extends Migration
      * the drop order has three mutual dependencies (FK needs the unique
      * index, the column can't drop while it's in the unique index) and an
      * earlier partial run can leave any subset of these already removed.
+     *
+     * DRIVER NOTE: the existence checks below query MySQL's
+     * information_schema.TABLE_CONSTRAINTS / STATISTICS tables, which don't
+     * exist on SQLite (used by the test suite's in-memory DB). Those checks
+     * only run on the mysql driver. On every other driver (sqlite in tests,
+     * etc.) we skip straight to the drops — a fresh test database always has
+     * the FK/index/column from the 2024_01_01 migration, so there's nothing
+     * to guard against there, and Laravel's schema builder handles the
+     * SQLite table-rebuild under the hood.
      */
     public function up(): void
     {
-        $foreignKeyExists = DB::table('information_schema.TABLE_CONSTRAINTS')
+        $isMysql = DB::getDriverName() === 'mysql';
+
+        $foreignKeyExists = $isMysql && DB::table('information_schema.TABLE_CONSTRAINTS')
             ->where('TABLE_SCHEMA', DB::getDatabaseName())
             ->where('TABLE_NAME', 'votes')
             ->where('CONSTRAINT_NAME', 'votes_voter_id_foreign')
             ->where('CONSTRAINT_TYPE', 'FOREIGN KEY')
             ->exists();
 
-        if ($foreignKeyExists) {
-            Schema::table('votes', function (Blueprint $table) {
-                $table->dropForeign(['voter_id']);
-            });
+        if (! $isMysql || $foreignKeyExists) {
+            if (Schema::hasColumn('votes', 'voter_id')) {
+                Schema::table('votes', function (Blueprint $table) {
+                    $table->dropForeign(['voter_id']);
+                });
+            }
         }
 
-        $indexExists = DB::table('information_schema.STATISTICS')
+        $indexExists = $isMysql && DB::table('information_schema.STATISTICS')
             ->where('TABLE_SCHEMA', DB::getDatabaseName())
             ->where('TABLE_NAME', 'votes')
             ->where('INDEX_NAME', 'votes_voter_id_position_id_candidate_id_unique')
             ->exists();
 
-        if ($indexExists) {
-            Schema::table('votes', function (Blueprint $table) {
-                $table->dropUnique(['voter_id', 'position_id', 'candidate_id']);
-            });
+        if (! $isMysql || $indexExists) {
+            if (Schema::hasColumn('votes', 'voter_id')) {
+                Schema::table('votes', function (Blueprint $table) {
+                    $table->dropUnique(['voter_id', 'position_id', 'candidate_id']);
+                });
+            }
         }
 
         if (Schema::hasColumn('votes', 'voter_id')) {
