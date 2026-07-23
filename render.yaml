@@ -1,0 +1,65 @@
+services:
+  - type: web
+    name: jrmsu-evoting
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    # All build/setup steps (composer install, config/route/view cache,
+    # migrations, admin seed) now happen inside the Docker image build and
+    # the container's entrypoint.sh — see Dockerfile and docker/entrypoint.sh.
+    healthCheckPath: /
+    # FIX: without a persistent disk, everything written to the container's
+    # filesystem — including candidate photos and the school logo, both
+    # saved via Storage::disk('public') into storage/app/public — lives on
+    # Render's ephemeral disk and is silently wiped on every redeploy or
+    # restart. Mounting a disk here at exactly that path is what makes
+    # uploads actually durable. Nothing else under storage/ needs to
+    # survive a restart (sessions use SESSION_DRIVER=database below, and
+    # logs go to stderr), so this is scoped to just the uploads directory.
+    disk:
+      name: uploads
+      mountPath: /var/www/storage/app/public
+      sizeGB: 1
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      # Render generates and stores this automatically — without it the app
+      # throws MissingAppKeyException on the very first request (session
+      # cookie encryption needs it). Do not hardcode a value here.
+      - key: APP_KEY
+        generateValue: true
+      # Set this to the actual public URL Render assigns this service
+      # (e.g. https://jrmsu-evoting.onrender.com) after first deploy —
+      # needed for correctly-signed asset/route URLs.
+      - key: APP_URL
+        sync: false
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: SESSION_DRIVER
+        value: database
+      - key: SESSION_SECURE_COOKIE
+        value: true
+      - key: CACHE_STORE
+        value: database
+      # Database — this app connects to an external Railway MySQL instance
+      # (Render itself doesn't offer managed MySQL). Fill these in with the
+      # Railway *internal* hostname, not the public TCP proxy (see README).
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 3306
+      - key: DB_DATABASE
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_NAME
+        sync: false

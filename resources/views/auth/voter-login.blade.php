@@ -1,0 +1,124 @@
+@extends('layouts.app')
+@section('title', 'Voter Login – JRMSU SSG E-Voting')
+
+@section('body')
+<div x-data="darkMode" class="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-ink px-4 transition-colors duration-200">
+    <button @click="toggle()" type="button" title="Toggle dark mode"
+        class="fixed top-4 right-4 text-xs text-gray-500 dark:text-white/70 hover:text-gray-800 dark:hover:text-white border border-gray-300 dark:border-white/30 w-9 h-9 rounded-lg transition flex items-center justify-center bg-white/80 dark:bg-white/5 backdrop-blur">
+        <svg x-show="!dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-4 w-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+        <svg x-show="dark" x-cloak xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-4 w-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+        </svg>
+    </button>
+
+    <div class="foil-edge w-full max-w-md bg-white dark:bg-white/5 dark:border dark:border-white/10 p-8 rounded-xl shadow-2xl border-t-4 border-secondary">
+        <div class="text-center mb-8">
+            <div class="seal-emboss inline-block">
+                <img src="{{ asset('images/SSG.jpg') }}" alt="SSG Logo"
+                     class="mx-auto w-24 h-24 rounded-full object-cover border-2 border-secondary shadow-md mb-4">
+            </div>
+            <h1 class="font-serif text-2xl font-semibold text-primary dark:text-white tracking-tight">JRMSU SSG Election</h1>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Siocon Campus — Voter Portal</p>
+        </div>
+
+        @if (session('success'))
+            <div class="mb-4 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 text-sm rounded-lg">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 text-sm rounded-lg">
+                {{ $errors->first() }}
+            </div>
+        @endif
+
+        {{-- Login --}}
+        
+    @error('_throttle')
+        <div class="text-sm text-red-600 dark:text-red-400 mb-3 p-3 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-4 w-4 inline-block shrink-0 align-[-3px] mr-1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>Too many login attempts. Please wait 1 minute before trying again.
+        </div>
+    @enderror
+<form method="POST" action="{{ route('voter.login.post') }}" class="mb-6">
+            @csrf
+            <div class="mb-4">
+                <label for="student_id" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Student ID</label>
+                <input type="text" id="student_id" name="student_id" required value="{{ old('student_id') }}"
+                    class="bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5 outline-none transition-all"
+                    placeholder="e.g. 2021-00001">
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                <input type="password" id="password" name="password" required
+                    class="bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5 outline-none transition-all"
+                    placeholder="••••••••">
+                <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Use the temporary password given to you by the SSG election administrator.</p>
+            </div>
+
+            <div class="mb-4">
+                <label for="captcha_answer" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Quick check: what is {{ $captchaQuestion }}?
+                </label>
+                <input type="text" inputmode="numeric" id="captcha_answer" name="captcha_answer" required autocomplete="off"
+                    class="bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5 outline-none transition-all"
+                    placeholder="Your answer">
+            </div>
+
+            <button type="submit"
+                class="w-full text-white bg-primary hover:bg-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-300">
+                Sign In
+            </button>
+        </form>
+
+        {{-- Register --}}
+        <details class="border border-gray-200 dark:border-white/10 rounded-lg">
+            <summary class="cursor-pointer p-3 text-sm font-medium text-primary dark:text-white select-none">
+                Not in the voter list? Register here
+            </summary>
+            <div class="p-4 border-t border-gray-200 dark:border-white/10">
+                <form method="POST" action="{{ route('voter.register') }}">
+                    @csrf
+                    <div class="mb-4">
+                        <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Student ID</label>
+                        <input type="text" name="student_id" required
+                            class="bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5 outline-none transition-all"
+                            placeholder="e.g. 2021-00001">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</label>
+                        <input type="text" name="name" required
+                            class="bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5 outline-none transition-all"
+                            placeholder="Juan Dela Cruz">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Course</label>
+                        <input type="text" name="course" required
+                            class="bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5 outline-none transition-all"
+                            placeholder="BSIS">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Quick check: what is {{ $captchaQuestion }}?
+                        </label>
+                        <input type="text" inputmode="numeric" name="captcha_answer" required autocomplete="off"
+                            class="bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5 outline-none transition-all"
+                            placeholder="Your answer">
+                    </div>
+                    <button type="submit"
+                        class="w-full text-white bg-secondary hover:bg-yellow-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors">
+                        Submit Registration
+                    </button>
+                </form>
+            </div>
+        </details>
+
+        <div class="mt-6 text-center text-xs text-gray-400 dark:text-gray-500">
+            <p>&copy; {{ date('Y') }} JRMSU Siocon SSG. All rights reserved.</p>
+        </div>
+    </div>
+</div>
+@endsection

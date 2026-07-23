@@ -1,0 +1,59 @@
+name: Tests
+
+# Referenced by the badge and the "Testing" section in README.md — keep the
+# job/workflow filename ("tests.yml") in sync with those links if this file
+# is ever renamed or moved.
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: mbstring, pdo_sqlite, sqlite3, zip, gd, bcmath, intl
+          coverage: none
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Copy environment file
+        run: cp .env.example .env
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      # Required before the test suite runs: SmokePageRenderTest renders
+      # full Blade layouts that call @vite(...), which throws a "file not
+      # found in Vite manifest" error if public/build/manifest.json doesn't
+      # exist yet.
+      - name: Build front-end assets
+        run: npm run build
+
+      - name: Check code style (Pint)
+        run: vendor/bin/pint --test
+
+      # phpunit.xml already points DB_CONNECTION at an in-memory SQLite
+      # database for the testing environment, so no separate database
+      # service/setup step is needed here.
+      - name: Run test suite
+        run: composer test
