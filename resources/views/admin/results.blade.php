@@ -8,7 +8,7 @@
     <div class="flex items-center gap-2">
         <label class="text-xs font-semibold text-gray-500 dark:text-white/50 uppercase tracking-wide">Election</label>
         <select id="election-select" onchange="location.href='{{ route('admin.results.index') }}?election=' + this.value"
-            class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2 focus:outline-none focus:ring-2 focus:ring-secondary">
+            class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2 focus:outline-none focus:ring-2 focus:ring-secondary">
             @forelse($elections as $e)
                 <option value="{{ $e->id }}" {{ $election && $election->id === $e->id ? 'selected' : '' }}>
                     {{ $e->title }} ({{ $e->status }})
