@@ -25,7 +25,7 @@
             <tbody>
                 @foreach($pending as $v)
                 <tr class="border-t border-yellow-100 dark:border-yellow-800/40">
-                    <td class="px-3 py-2 font-mono text-xs">{{ $v->student_id }}</td>
+                    <td class="px-3 py-2 font-mono text-xs text-gray-800 dark:text-white/90">{{ $v->student_id }}</td>
                     <td class="px-3 py-2 text-gray-800 dark:text-white/90">{{ $v->name }}</td>
                     <td class="px-3 py-2 text-gray-800 dark:text-white/90">{{ $v->course }}</td>
                     <td class="px-3 py-2 text-center space-x-2">
@@ -118,15 +118,15 @@
             <input type="hidden" id="voter-id">
             <div>
                 <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Student ID</label>
-                <input type="text" id="v-student_id" class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="2021-00001">
+                <input type="text" id="v-student_id" class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="2021-00001">
             </div>
             <div>
                 <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Full Name</label>
-                <input type="text" id="v-name" class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="Juan Dela Cruz">
+                <input type="text" id="v-name" class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="Juan Dela Cruz">
             </div>
             <div>
                 <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Course</label>
-                <input type="text" id="v-course" class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="BSIS">
+                <input type="text" id="v-course" class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="BSIS">
             </div>
             <p id="modal-error" class="text-red-600 dark:text-red-400 text-xs hidden"></p>
         </div>
@@ -154,7 +154,7 @@
             <button type="button" onclick="downloadCsvTemplate()" class="text-xs text-blue-600 dark:text-gold-bright hover:text-blue-800 hover:dark:text-gold-bright font-semibold underline">
                 Download CSV template
             </button>
-            <input type="file" id="import-file" accept=".csv,text/csv" class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full">
+            <input type="file" id="import-file" accept=".csv,text/csv" class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full">
             <p id="import-error" class="text-red-600 dark:text-red-400 text-xs hidden"></p>
         </div>
         <div id="import-results-area" class="hidden p-6 border-t border-gray-100 dark:border-white/10 space-y-3">
