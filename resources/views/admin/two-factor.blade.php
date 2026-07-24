@@ -44,7 +44,7 @@
                 <p class="text-xs text-gray-400 dark:text-white/40 mb-2">Confirm your password to invalidate the old codes and get a fresh set.</p>
                 <div class="flex gap-2">
                     <input type="password" name="password" required placeholder="Current password"
-                        class="flex-1 border border-gray-300 dark:border-white/20 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary">
+                        class="flex-1 bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary">
                     <button type="submit" class="bg-gray-100 dark:bg-white/10 hover:bg-gray-200 hover:dark:bg-white/10 text-gray-700 dark:text-white/80 text-sm font-semibold px-4 py-2 rounded-xl transition-colors">
                         Regenerate
                     </button>
@@ -57,7 +57,7 @@
                 <label class="block text-sm font-medium text-gray-700 dark:text-white/80 mb-1">Turn off two-factor authentication</label>
                 <div class="flex gap-2 mt-2">
                     <input type="password" name="password" required placeholder="Current password"
-                        class="flex-1 border border-gray-300 dark:border-white/20 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:dark:ring-red-500">
+                        class="flex-1 bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:dark:ring-red-500">
                     <button type="submit" class="bg-red-50 dark:bg-red-900/20 hover:bg-red-100 hover:dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm font-semibold px-4 py-2 rounded-xl transition-colors">
                         Disable
                     </button>
@@ -102,7 +102,7 @@
                 <div class="flex gap-2">
                     <input type="text" name="code" inputmode="numeric" maxlength="6" required autofocus
                         placeholder="000000"
-                        class="flex-1 border border-gray-300 dark:border-white/20 rounded-xl px-4 py-2 text-sm text-center tracking-[0.3em] font-mono focus:outline-none focus:ring-2 focus:ring-secondary">
+                        class="flex-1 bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-xl px-4 py-2 text-sm text-center tracking-[0.3em] font-mono focus:outline-none focus:ring-2 focus:ring-secondary">
                     <button type="submit" class="bg-primary hover:bg-secondary text-white text-sm font-semibold px-6 py-2 rounded-xl transition-colors">
                         Enable
                     </button>
