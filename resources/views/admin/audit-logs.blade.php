@@ -9,7 +9,7 @@
 <form method="GET" action="{{ route('admin.audit-logs.index') }}" class="bg-white dark:bg-[#0f2a4a] rounded-2xl shadow-sm p-5 mb-6 border border-gray-100 dark:border-white/10 flex flex-wrap gap-3 items-end">
     <div>
         <label class="block text-xs font-semibold text-gray-500 dark:text-white/50 mb-1 uppercase tracking-wide">Actor Type</label>
-        <select name="actor_type" class="border border-gray-300 dark:border-white/20 rounded-lg text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary">
+        <select name="actor_type" class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary">
             <option value="">All</option>
             <option value="admin"  {{ request('actor_type') === 'admin'  ? 'selected' : '' }}>Admin</option>
             <option value="voter"  {{ request('actor_type') === 'voter'  ? 'selected' : '' }}>Voter</option>
@@ -19,7 +19,7 @@
         <label class="block text-xs font-semibold text-gray-500 dark:text-white/50 mb-1 uppercase tracking-wide">Action Contains</label>
         <input type="text" name="action" value="{{ request('action') }}"
             placeholder="e.g. vote, login"
-            class="border border-gray-300 dark:border-white/20 rounded-lg text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary w-48">
+            class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary w-48">
     </div>
     <button type="submit" class="bg-primary text-white text-sm font-semibold px-5 py-2 rounded-xl hover:bg-secondary transition-colors">
         Filter
