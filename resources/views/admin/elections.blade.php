@@ -88,15 +88,15 @@
             <input type="hidden" id="e-id">
             <div>
                 <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Title</label>
-                <input type="text" id="e-title" class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="e.g. SSG Election 2026-2027">
+                <input type="text" id="e-title" class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="e.g. SSG Election 2026-2027">
             </div>
             <div>
                 <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Start Time</label>
-                <input type="datetime-local" id="e-start" class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary">
+                <input type="datetime-local" id="e-start" class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary">
             </div>
             <div>
                 <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">End Time</label>
-                <input type="datetime-local" id="e-end" class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary">
+                <input type="datetime-local" id="e-end" class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary">
             </div>
             <p id="election-modal-error" class="text-red-600 dark:text-red-400 text-xs hidden"></p>
         </div>
