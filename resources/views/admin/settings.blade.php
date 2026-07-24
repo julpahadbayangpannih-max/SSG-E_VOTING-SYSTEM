@@ -21,21 +21,21 @@
             <div>
                 <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">School Name (full)</label>
                 <input type="text" name="school_name" value="{{ old('school_name', $brand['school_name']) }}"
-                    class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
+                    class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
                     placeholder="JRMSU Siocon Campus">
                 @error('school_name')<p class="text-red-600 dark:text-red-400 text-xs mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
                 <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Short Name (badge/logo label)</label>
                 <input type="text" name="school_short_name" value="{{ old('school_short_name', $brand['school_short_name']) }}"
-                    class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
+                    class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
                     placeholder="JRMSU">
                 @error('school_short_name')<p class="text-red-600 dark:text-red-400 text-xs mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
                 <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Tagline</label>
                 <input type="text" name="school_tagline" value="{{ old('school_tagline', $brand['tagline']) }}"
-                    class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
+                    class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
                     placeholder="SSG Election · E-Voting System">
             </div>
             <div>
