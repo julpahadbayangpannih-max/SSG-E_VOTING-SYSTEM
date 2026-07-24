@@ -83,13 +83,13 @@
         @if($licenseKey)
         <div class="mb-4">
             <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Active License Key</label>
-            <div class="font-mono text-sm bg-slate-50 dark:bg-white/10 border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2">{{ $licenseKey }}</div>
+            <div class="font-mono text-sm text-gray-800 dark:text-white/90 bg-slate-50 dark:bg-white/10 border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2">{{ $licenseKey }}</div>
         </div>
         @endif
 
         <div class="bg-slate-50 dark:bg-white/10 border border-gray-200 dark:border-white/10 rounded-xl p-4 text-xs text-gray-500 dark:text-white/50 leading-relaxed">
             <p class="font-semibold text-gray-600 dark:text-white/70 mb-1">To generate or re-generate a key for this server:</p>
-            <code class="block bg-white dark:bg-[#0f2a4a] border border-gray-200 dark:border-white/10 rounded px-2 py-1.5 mt-1">php artisan license:generate</code>
+            <code class="block text-gray-800 dark:text-white/90 bg-white dark:bg-[#0f2a4a] border border-gray-200 dark:border-white/10 rounded px-2 py-1.5 mt-1">php artisan license:generate</code>
             <p class="mt-2">The key is derived from this install's <code>APP_KEY</code>, so deploying the same codebase to a different server requires generating a new key there.</p>
         </div>
     </div>
