@@ -90,19 +90,19 @@
                 <div>
                     <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Full Name</label>
                     <input type="text" name="name" id="c-name"
-                        class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
+                        class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
                         placeholder="Juan Dela Cruz" required>
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Party List</label>
                     <input type="text" name="party_list" id="c-party_list"
-                        class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
+                        class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
                         placeholder="Independent">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Position</label>
                     <select name="position_id" id="c-position_id"
-                        class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" required>
+                        class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" required>
                         <option value="">— Select Position —</option>
                         @foreach($positions as $p)
                         <option value="{{ $p->id }}">{{ $p->name }}</option>
@@ -112,7 +112,7 @@
                 <div>
                     <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Photo (optional, max 2MB)</label>
                     <input type="file" name="image" id="c-image" accept="image/*"
-                        class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2 w-full focus:outline-none">
+                        class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2 w-full focus:outline-none">
                     <p class="text-xs text-gray-400 dark:text-white/40 mt-1">Leave blank to keep existing photo when editing.</p>
                 </div>
                 <p id="modal-error" class="text-red-600 dark:text-red-400 text-xs hidden"></p>
