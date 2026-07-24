@@ -77,11 +77,11 @@
             <input type="hidden" id="pos-id">
             <div>
                 <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Position Name</label>
-                <input type="text" id="p-name" class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="e.g. SSG President">
+                <input type="text" id="p-name" class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="e.g. SSG President">
             </div>
             <div>
                 <label class="block text-xs font-semibold text-gray-600 dark:text-white/70 mb-1">Max Votes Allowed</label>
-                <input type="number" id="p-max_votes" min="1" max="10" value="1" class="border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary">
+                <input type="number" id="p-max_votes" min="1" max="10" value="1" class="bg-white dark:bg-white/10 text-gray-800 dark:text-white/90 border border-gray-300 dark:border-white/20 rounded-lg text-sm p-2.5 w-full focus:outline-none focus:ring-2 focus:ring-secondary">
             </div>
             <p id="modal-error" class="text-red-600 dark:text-red-400 text-xs hidden"></p>
         </div>
