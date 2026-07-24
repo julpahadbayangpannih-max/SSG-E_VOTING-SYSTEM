@@ -26,8 +26,8 @@
                 @foreach($pending as $v)
                 <tr class="border-t border-yellow-100 dark:border-yellow-800/40">
                     <td class="px-3 py-2 font-mono text-xs">{{ $v->student_id }}</td>
-                    <td class="px-3 py-2">{{ $v->name }}</td>
-                    <td class="px-3 py-2">{{ $v->course }}</td>
+                    <td class="px-3 py-2 text-gray-800 dark:text-white/90">{{ $v->name }}</td>
+                    <td class="px-3 py-2 text-gray-800 dark:text-white/90">{{ $v->course }}</td>
                     <td class="px-3 py-2 text-center space-x-2">
                         <button onclick="approveVoter({{ $v->id }}, this)"
                             class="text-xs bg-green-600 dark:bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700 hover:dark:bg-green-700 transition">Approve</button>
@@ -81,7 +81,7 @@
                 @forelse($voters->where('is_approved', true) as $voter)
                 <tr class="hover:bg-gray-50 hover:dark:bg-white/5 transition-colors" id="voter-row-{{ $voter->id }}">
                     <td class="px-6 py-4 text-xs font-mono text-gray-500 dark:text-white/50">{{ $voter->student_id }}</td>
-                    <td class="px-6 py-4 font-medium text-sm">{{ $voter->name }}</td>
+                    <td class="px-6 py-4 font-medium text-sm text-gray-800 dark:text-white/90">{{ $voter->name }}</td>
                     <td class="px-6 py-4 text-sm text-gray-600 dark:text-white/70">{{ $voter->course }}</td>
                     <td class="px-6 py-4 text-center">
                         @if(in_array($voter->id, $votedIds))
